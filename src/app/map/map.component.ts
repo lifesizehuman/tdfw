@@ -12,11 +12,13 @@ export interface Item {
 }
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: "app-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.css"]
 })
 export class MapComponent {
+  selectedSize: string;
+  selectedColor: string;
   items$: Observable<Item[]>;
   sizeFilter$: BehaviorSubject<string | null>;
   colorFilter$: BehaviorSubject<string | null>;
@@ -27,15 +29,19 @@ export class MapComponent {
     this.items$ = Observable.combineLatest(
       this.sizeFilter$,
       this.colorFilter$
-    ).switchMap(([size, color]) => afs.collection<Item>('items', ref => {
-          let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
-                   console.log(query);
+    ).switchMap(([size, color]) =>
+      afs
+        .collection<Item>("items", ref => {
+          let query:
+            | firebase.firestore.CollectionReference
+            | firebase.firestore.Query = ref;
+          //  console.log(query);
 
           if (size) {
-            query = query.where('size', '==', size);
+            query = query.where("size", "==", size);
           }
           if (color) {
-            query = query.where('color', '==', color);
+            query = query.where("color", "==", color);
           }
           return query;
         })
@@ -52,6 +58,19 @@ export class MapComponent {
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
     // console.log(this.items$);
+  }
+
+  submitFilterByColor() {
+    this.selectedColor = document.getElementById("selectedColor").value;
+    // console.log(this.selectedColor);
+    this.filterByColor(this.selectedColor);
+    this.selectedColor = null;
+  }
+  submitFilterBySize() {
+    this.selectedSize = document.getElementById("selectedSize").value;
+    // console.log(this.selectedColor);
+    this.filterBySize(this.selectedSize);
+    this.selectedSize = null;
   }
 }
   

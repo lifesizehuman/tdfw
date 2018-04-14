@@ -10,10 +10,11 @@ import { MainComponent } from './main/main.component';
 import { MapComponent } from './map/map.component';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
+import { JumboComponent } from './jumbo/jumbo.component';
 
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, MapComponent],
+  declarations: [AppComponent, MainComponent, MapComponent, JumboComponent],
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
