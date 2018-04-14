@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
@@ -12,18 +15,24 @@ export interface Item {
 }
 
 @Component({
-  selector: "app-map",
-  templateUrl: "./map.component.html",
-  styleUrls: ["./map.component.css"]
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent {
+
+  newText: string;
+  newColor: string;
+  newSize: string;
   selectedSize: string;
   selectedColor: string;
   items$: Observable<Item[]>;
   sizeFilter$: BehaviorSubject<string | null>;
   colorFilter$: BehaviorSubject<string | null>;
+  itemCollectionRef: AngularFirestoreCollection<Item>;
 
-  constructor(afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore) {
+    this.itemCollectionRef = this.afs.collection<Item>('items');
     this.sizeFilter$ = new BehaviorSubject(null);
     this.colorFilter$ = new BehaviorSubject(null);
     this.items$ = Observable.combineLatest(
@@ -31,17 +40,15 @@ export class MapComponent {
       this.colorFilter$
     ).switchMap(([size, color]) =>
       afs
-        .collection<Item>("items", ref => {
+        .collection<Item>('items', ref => {
           let query:
             | firebase.firestore.CollectionReference
             | firebase.firestore.Query = ref;
-          //  console.log(query);
-
           if (size) {
-            query = query.where("size", "==", size);
+            query = query.where('size', '==', size);
           }
           if (color) {
-            query = query.where("color", "==", color);
+            query = query.where('color', '==', color);
           }
           return query;
         })
@@ -55,22 +62,33 @@ export class MapComponent {
     this.colorFilter$.next(color);
   }
 
-  // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    // console.log(this.items$);
   }
 
   submitFilterByColor() {
-    this.selectedColor = document.getElementById("selectedColor").value;
-    // console.log(this.selectedColor);
+    this.selectedColor = document.getElementById('selectedColor').value;
     this.filterByColor(this.selectedColor);
     this.selectedColor = null;
   }
   submitFilterBySize() {
-    this.selectedSize = document.getElementById("selectedSize").value;
-    // console.log(this.selectedColor);
+    this.selectedSize = document.getElementById('selectedSize').value;
     this.filterBySize(this.selectedSize);
     this.selectedSize = null;
   }
-}
+
   
+
+  addListItem() {
+    let desc = document.getElementById('desc').value;
+    let col = document.getElementById('col').value;
+    let siz = document.getElementById('size').value;
+    this.newText = desc;
+    this.newColor = col;
+    this.newSize = siz;
+    this.itemCollectionRef.add({ text: this.newText, color: this.newColor, size: this.newSize });
+    desc = null;
+    col = null;
+    siz = null;
+    event.preventDefault();
+  }
+}

@@ -9,3 +9,32 @@
 .custom-select {
   margin-right: 20px !important;
 }
+
+.badge {
+  cursor: pointer !important;
+}
+
+.badge:hover {
+  background-color: red !important;
+}
+
+#submitButton {
+  margin-top: 20px;
+}
+
+
+
+
+@media screen and ( max-width: 767px ) {
+  .addItemCard {
+    margin-top: 20px;
+  }
+  .form-control {
+    margin-top: 10px !important;
+  }
+
+  .addItemCard .btn {
+    margin-top: 10px !important;
+  }
+
+}
