@@ -38,7 +38,8 @@ import { DetailsComponent } from './details/details.component';
       apiKey: "AIzaSyCRA-Ak2ugUWySATT0zQXHONKCZcf5V9Yg"
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireModule
+    AngularFireModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [
     AngularFirestore,
@@ -47,7 +48,11 @@ import { DetailsComponent } from './details/details.component';
     PositioningService,
     DetailsComponent
   ],
-  entryComponents: [ModalBackdropComponent, ModalContainerComponent, DetailsComponent],
+  entryComponents: [
+    ModalBackdropComponent,
+    ModalContainerComponent,
+    DetailsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

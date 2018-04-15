@@ -13,7 +13,7 @@ import { FirebaseApp } from "angularfire2";
 import { query } from "@angular/core/src/animation/dsl";
 
 export interface Item {
-  id: any;
+  id?: any;
   text: string;
   color: string;
   size: string;
@@ -26,7 +26,7 @@ export interface Item {
 })
 export class MapComponent {
   itemCollectionRef: AngularFirestoreCollection<Item>;
-  items$: Observable<Item[]>;
+  item$: Observable<Item[]>;
 
   // private itemDoc: AngularFirestoreDocument<Item>;
   // itemId: any;
@@ -39,7 +39,7 @@ export class MapComponent {
   // items$: Observable<Item[]>;
   sizeFilter$: BehaviorSubject<string | null>;
   colorFilter$: BehaviorSubject<string | null>;
-  id: any;
+  // id: any;
   // itemCollectionRef: AngularFirestoreCollection<Item>;
 
   constructor(
@@ -49,11 +49,11 @@ export class MapComponent {
   ) {
 
     this.itemCollectionRef = this.afs.collection<Item>("items");
-    this.items$ = this.itemCollectionRef.snapshotChanges().map(actions => {
+    this.item$ = this.itemCollectionRef.snapshotChanges().map(actions => {
       return actions.map(action => {
         const data = action.payload.doc.data() as Item;
         const id = action.payload.doc.id;
-        this.id = id;
+        // this.id = id;
         return { id, ...data };
       });
     });
@@ -130,9 +130,9 @@ export class MapComponent {
   //   this.itemCollectionRef.doc(item.id).update({ completed: !todo.completed });
   // }
 
-  deleteItem() {
-    console.log(this.id);
-    this.itemCollectionRef.doc(this.id).delete();
+  deleteItem(item$: Item) {
+    console.log(item$.id);
+    // this.itemCollectionRef.doc(items$.id).delete();
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {}

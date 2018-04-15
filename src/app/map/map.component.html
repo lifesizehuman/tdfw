@@ -3,13 +3,13 @@
 
     <div class="col-sm-12 col-md-4">
 
-      <div  *ngIf="(items$ | async); let items; else loading">
+      <!-- <div  *ngIf="(items$ | async); let items; else loading"> -->
         <div class="card ">
           <div class="card-header">Items in Storage</div>
 
           <div class="storage">
 
-          <div *ngFor='let item of items'>
+          <div *ngFor='let item of item$ | async'>
 
 
             <ul class="list-group list-group-flush">
@@ -18,16 +18,16 @@
               </li>
             </ul>
 
-            <div *ngIf="items.length === 0">
+            <!-- <div *ngIf="items$.length === 0">
               <li class="list-item list-group-item">
                 No results, try clearing filters
               </li>
-            </div>
+            </div> -->
           </div>
           <ng-template #loading>Loading&hellip;</ng-template>
         </div>
       </div>
-</div>
+<!-- </div> -->
     </div>
 
     <div class="col-sm-12 col-md-8">
