@@ -18,8 +18,8 @@
   background-color: red !important;
 }
 
-#submitButton {
-  margin-top: 20px;
+.submitButton {
+  margin-top: 15px;
 }
 
 
@@ -37,4 +37,13 @@
     margin-top: 10px !important;
   }
 
+  #col, #desc {
+    width: 100% !important;
+  }
+
+}
+
+.storage {
+  max-height: 330px !important;
+  overflow-y: scroll;
 }

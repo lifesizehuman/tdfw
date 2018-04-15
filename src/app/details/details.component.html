@@ -1,0 +1,15 @@
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Item Details</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="this.closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <div *ngIf="items$ | async; let items;">
+    <div *ngFor='let item of items'>
+  
+          {{item.text}}
+       
+   </div> 
+  </div>
