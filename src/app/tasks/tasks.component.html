@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="card ">
+        <div class="card-header">Tasks in Storage</div>
+        <div class="storage">
+          <tr *ngFor='let task of task$ | async; let i=index' [attr.data-index]='i'>
+            <td>{{task.description}}</td>
+            <td>
+              <button class='btn btn-success' (click)='completeTask(task)'>
+                <i class='fa fa-edit'></i>
+              </button>
+              <button class='btn btn-danger' (click)='deleteTask(task)'>
+                <i class='fa fa-remove'></i>
+              </button>
+            </td>
+          </tr>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="card addItemCard">
+        <div class="card-header">Add a New Task</div>
+        <div class="card-body">
+          <form>
+            <div class='form-group'>
+              <input name='myTask' id="myTask" type='text' class='form-control' placeholder='Enter Task' required>
+            </div>
+            
+            <div class='form-group'>
+              <button class='btn btn-primary'  (click)='saveTask()'>
+                Save Task
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

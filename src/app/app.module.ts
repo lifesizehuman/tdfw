@@ -20,6 +20,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { JumboComponent } from './jumbo/jumbo.component';
 import { DetailsComponent } from './details/details.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ManagerService } from './manager.service';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { DetailsComponent } from './details/details.component';
     JumboComponent,
     DetailsComponent,
     ModalBackdropComponent,
-    ModalContainerComponent
+    ModalContainerComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { DetailsComponent } from './details/details.component';
     BsModalService,
     ComponentLoaderFactory,
     PositioningService,
-    DetailsComponent
+    DetailsComponent,
+    ManagerService
   ],
   entryComponents: [
     ModalBackdropComponent,
