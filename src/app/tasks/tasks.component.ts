@@ -18,8 +18,8 @@ export interface Task {
 
 @Component({
   selector: "app-tasks",
-  templateUrl: "./tasks.component.html",
-  styleUrls: ["./tasks.component.css"]
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
   taskCollectionRef: AngularFirestoreCollection<Task>;
@@ -28,12 +28,13 @@ export class TasksComponent implements OnInit {
   myTask: string;
   editMode: boolean;
   taskToComplete: any = {};
+  value = '';
 
   constructor(
     public afs: AngularFirestore,
     private managerService: ManagerService
   ) {
-    this.taskCollectionRef = this.afs.collection<Task>("tasks");
+    this.taskCollectionRef = this.afs.collection<Task>('tasks');
     this.task$ = this.taskCollectionRef.valueChanges();
     this.task$.subscribe(data => console.log(data));
   }
@@ -54,14 +55,13 @@ export class TasksComponent implements OnInit {
   }
 
 
-  saveTask() {
-    this.myTask = document.getElementById("myTask").value;
+  saveTask(value: string) {
+    this.myTask = value;
     const task = {
       description: this.myTask,
       completed: false
     };
     this.managerService.addTask(task);
-    this.myTask = "";
     event.preventDefault();
   }
 
