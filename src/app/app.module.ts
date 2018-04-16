@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
@@ -15,7 +15,7 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { MapComponent } from './map/map.component';
+
 import { AngularFirestore } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { JumboComponent } from './jumbo/jumbo.component';
@@ -28,7 +28,7 @@ import { ManagerService } from './manager.service';
   declarations: [
     AppComponent,
     MainComponent,
-    MapComponent,
+    
     JumboComponent,
     DetailsComponent,
     ModalBackdropComponent,

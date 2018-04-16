@@ -24,6 +24,7 @@ export interface Task {
 export class TasksComponent implements OnInit {
   taskCollectionRef: AngularFirestoreCollection<Task>;
   task$: Observable<any[]>;
+  isCompleted: boolean;
   myTask: string;
   editMode: boolean;
   taskToComplete: any = {};
@@ -37,26 +38,37 @@ export class TasksComponent implements OnInit {
     this.task$.subscribe(data => console.log(data));
   }
 
-  completeTask(task) {
+  edit(task) {
     const taskId = task.id;
-    this.managerService.completeTask(taskId);
-  } 
+    console.log(taskId);
+    let completed = task.completed;
+    if (completed === false) {
+      completed = true;
+      this.managerService.markComplete(taskId);
+      console.log('this task is not completed');
+    } else {
+      completed = false;
+      this.managerService.markIncomplete(taskId);
+      console.log('this task is completed');
+    }
+  }
+
 
   saveTask() {
-    this.myTask = document.getElementById('myTask').value;
-      const task = {
-         description: this.myTask,
-         completed: false
-      };
-      this.managerService.addTask(task);
-      this.myTask = '';
-      event.preventDefault();
-   }
+    this.myTask = document.getElementById("myTask").value;
+    const task = {
+      description: this.myTask,
+      completed: false
+    };
+    this.managerService.addTask(task);
+    this.myTask = "";
+    event.preventDefault();
+  }
 
-deleteTask(task) {
-   const taskId = task.id;
-   this.managerService.deleteTask(taskId);
-} 
+  deleteTask(task) {
+    const taskId = task.id;
+    this.managerService.deleteTask(taskId);
+  }
 
   ngOnInit() {
     this.task$ = this.afs

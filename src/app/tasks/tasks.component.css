@@ -1,0 +1,23 @@
+.taskListItem {
+    font-size: 1.6em;
+}
+
+.storage {
+  max-height: 330px !important;
+  overflow-y: scroll;
+}
+@media screen and ( max-width: 767px) {
+  .addItemCard {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.incomplete {
+  color: red;
+}
+
+.complete {
+  color: green;
+  text-decoration: line-through;
+}

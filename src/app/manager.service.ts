@@ -20,14 +20,14 @@ addTask(task) {
   this.tasks.add(task);
 }
 
-completeTask(id) {
+markComplete(id) {
  this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
- this.taskDoc.update({ completed: true });
+ this.taskDoc.update({id, completed: true});
 }
 
-updateTask(id, update) {
+markIncomplete(id) {
    this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
-   this.taskDoc.update(update);
+   this.taskDoc.update({id, completed: false});
 }
 
 deleteTask(id) {
