@@ -1,2 +1,9 @@
 <app-jumbo></app-jumbo>
-<app-tasks></app-tasks>
+<div [ngClass]="[this.time < 6 ? 'night':'morning', 
+this.time < 12 && this.time >= 6 ? 'morning':'noon', 
+this.time < 17 && this.time >= 12 ? 'evening':'night', 
+this.time <= 23 && this.time >= 17 ? 'night':'morning']">
+   <app-tasks></app-tasks> 
+</div>
+
+

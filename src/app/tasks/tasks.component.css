@@ -21,3 +21,13 @@
   color: green;
   text-decoration: line-through;
 }
+
+
+#mainBody {
+  background-image: url('../../assets/images/afternoon.jpg');
+  /* background-position: center center; */
+  height: calc(100vh - 230px);
+
+  background-size: cover;
+
+}
