@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AgmCoreModule } from '@agm/core';
+
 
 
 import { AppComponent } from './app.component';
@@ -17,27 +17,25 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ManagerService } from './manager.service';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     JumboComponent,
     TasksComponent
+   
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCRA-Ak2ugUWySATT0zQXHONKCZcf5V9Yg"
-    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireModule,
     AngularFirestoreModule.enablePersistence()
+    
   ],
-  providers: [
-    AngularFirestore,
-    ManagerService
-  ],
-  entryComponents: [],
+  providers: [AngularFirestore, ManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
