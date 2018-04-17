@@ -1,0 +1,32 @@
+.morning {
+  background-image: url('../../assets/images/sunrise.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.noon {
+  background-image: url('../../assets/images/afternoon.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.evening {
+  background-image: url('../../assets/images/evening.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.night {
+  background-image: url('../../assets/images/night.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.jumbotron {
+    color: white !important;
+}
+
+.jumbotron h1 {
+   text-shadow: 0px 0px 5px black !important;
+
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -6,18 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  time: number = null;
+  
 
   constructor() { }
 
   ngOnInit() {
-    this.getTime();
+   
   }
 
-  getTime() {
-    const hour = new Date();
-    this.time = hour.getHours();
-    console.log(this.time);
-  }
+  
 
 }
