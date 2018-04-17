@@ -28,7 +28,7 @@ export class JumboComponent implements OnInit {
       main.classList.add("noon");
     } else if (now >= 18 && now < 20) {
       main.classList.add("evening");
-    } else if (now > 20 && now <= 23) {
+    } else if (now >= 20 && now <= 23) {
       main.classList.add("night");
     }
   }
