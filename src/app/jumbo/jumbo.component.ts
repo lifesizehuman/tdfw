@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
-  selector: "app-jumbo",
-  templateUrl: "./jumbo.component.html",
-  styleUrls: ["./jumbo.component.css"]
+  selector: 'app-jumbo',
+  templateUrl: './jumbo.component.html',
+  styleUrls: ['./jumbo.component.css']
 })
 export class JumboComponent implements OnInit {
   time: number = null;
@@ -18,18 +19,18 @@ export class JumboComponent implements OnInit {
     const hour = new Date();
     this.time = hour.getHours();
     const now = this.time;
-    const main = document.getElementById("main");
+    const main = $('#main');
 
     if (now < 6) {
-      main.classList.add("night");
+      main.addClass('night');
     } else if (now >= 6 && now < 12) {
-      main.classList.add("morning");
+      main.addClass('morning');
     } else if (now >= 12 && now < 18) {
-      main.classList.add("noon");
+      main.addClass('noon');
     } else if (now >= 18 && now < 20) {
-      main.classList.add("evening");
+      main.addClass('evening');
     } else if (now >= 20 && now <= 23) {
-      main.classList.add("night");
+      main.addClass('night');
     }
   }
 }
